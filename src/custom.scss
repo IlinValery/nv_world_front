@@ -1,0 +1,28 @@
+
+$theme-colors: (
+        "primary": #528078,
+        "secondary": #eed75a,
+        "success": #4ad17d,
+        "danger": #703B3B,
+        "info": #57e783,
+        "warning": #FFE869,
+        "light": #FDFBF7,
+        "dark": #555555
+);
+
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+
+
+//@each $color, $value in $theme-colors {
+//  .btn-#{$color} {
+//    @include btn-variant(theme-color-level($color, -10), theme-color-level($color, -9), theme-color-level($color, 6));
+//  }
+//  //here add some changes for text and etc.
+//
+//}
+//
+//// Generate `.bg-*` color utilities
+//@each $color, $value in $theme-colors {
+//  @include bg-variant('.bg-#{$color}', $value);
+//}
