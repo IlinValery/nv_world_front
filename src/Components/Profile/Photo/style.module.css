@@ -1,0 +1,16 @@
+.photo_user {
+    /*display: block;*/
+    /*margin-left: auto;*/
+    /*margin-right: auto;*/
+    border-radius: 50%;
+    width: 90%;
+}
+
+.block_center {
+    display:flex;
+    justify-content: center; /*центрируем элемент по горизонтали */
+    /*align-items: center; !* и вертикали *!*/
+    /*width: 200px; !* задали размеры блоку-родителю *!*/
+    /*height: 200px;*/
+    overflow: hidden; /* если элемент больше блока-родителя – обрезаем лишнее */
+}
