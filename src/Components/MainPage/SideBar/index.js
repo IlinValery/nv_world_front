@@ -4,6 +4,7 @@ import {connect} from "react-redux";
 import ModalChangeLocation from "./ModalChangeLocation";
 import ModalInfo from "./ModalInfo";
 import ModalSearch from "./ModalSearch";
+import HorizontalDivider from "./Components/divider";
 
 
 class SideBar extends React.Component {
@@ -22,9 +23,9 @@ class SideBar extends React.Component {
             <div className={"sidebar-container"}>
                 person card as component here, on did mount - > apply personal informatio. Now - just static
                 <br/><br/>
-                TODO divider<br/><br/>
+                <HorizontalDivider/>
                 Tasks here<br/><br/>
-                TODO divider<br/><br/>
+                <HorizontalDivider/>
 
 
 
