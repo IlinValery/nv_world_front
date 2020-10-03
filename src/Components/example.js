@@ -16,7 +16,7 @@ class Example extends React.Component {
 
     render() {
         return (
-            <div className={"auth-page-container"}>
+            <div>
 
             </div>
         );
