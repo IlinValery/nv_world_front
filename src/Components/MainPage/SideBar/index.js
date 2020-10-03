@@ -10,6 +10,7 @@ import Skills from "./Profile/"
 import {users} from "./users"
 
 
+import HorizontalDivider from "./Components/divider";
 
 
 class SideBar extends React.Component {
@@ -27,6 +28,11 @@ class SideBar extends React.Component {
 
         return (
             <div className={"sidebar-container"}>
+                person card as component here, on did mount - > apply personal informatio. Now - just static
+                <br/><br/>
+                <HorizontalDivider/>
+                Tasks here<br/><br/>
+                <HorizontalDivider/>
                 <Profile user={users[0]}/>
 
                 {/*person card as component here, on did mount - > apply personal information. Now - just static*/}
