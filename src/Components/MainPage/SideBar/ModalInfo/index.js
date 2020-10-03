@@ -2,9 +2,9 @@ import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import Pitch from "./Pitch"
 
-
-class ModalInfo extends React.Component {
+class ModalInfo extends React.Component  {
 
     constructor(props) {
         super(props);
@@ -21,20 +21,19 @@ class ModalInfo extends React.Component {
 
     render() {
         return (
-            <div>
-                <Button color="primary" onClick={this.toggleModal}>System information</Button>
-                <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>System overview</ModalHeader>
-                    <ModalBody>
-                        TODO make system overview
-                    </ModalBody>
-                </Modal>
-            </div>
-        );
+                <div style={{marginBottom: "10px"}}>
+                    <Button color="primary" onClick={this.toggleModal}>System information</Button>
+                    <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
+                        <ModalHeader toggle={this.toggleModal}>System overview</ModalHeader>
+                        <ModalBody>
+                            <Pitch/>
+                        </ModalBody>
+                    </Modal>
+                </div>
+            )
     }
+
+
 }
 
-export default connect(
-    state => ({}),
-    dispatch => ({})
-)(ModalInfo);
+export default ModalInfo
