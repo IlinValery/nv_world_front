@@ -28,11 +28,11 @@ class SideBar extends React.Component {
 
         return (
             <div className={"sidebar-container"}>
-                person card as component here, on did mount - > apply personal informatio. Now - just static
-                <br/><br/>
-                <HorizontalDivider/>
-                Tasks here<br/><br/>
-                <HorizontalDivider/>
+                {/*person card as component here, on did mount - > apply personal informatio. Now - just static*/}
+                {/*<br/><br/>*/}
+                {/*<HorizontalDivider/>*/}
+                {/*Tasks here<br/><br/>*/}
+                {/*<HorizontalDivider/>*/}
                 <Profile user={users[0]}/>
 
                 {/*person card as component here, on did mount - > apply personal information. Now - just static*/}
@@ -44,10 +44,11 @@ class SideBar extends React.Component {
 
 
 
-
-                <ModalInfo/>
-                <ModalChangeLocation/>
-                <ModalSearch/>
+                <div className="block_modals">
+                    <ModalInfo className="modals_margin_bottom"/>
+                    <ModalChangeLocation className="modals_margin_bottom"/>
+                    <ModalSearch className="modals_margin_bottom"/>
+                </div>
             </div>
         );
     }

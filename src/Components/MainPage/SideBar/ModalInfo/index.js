@@ -21,7 +21,7 @@ class ModalInfo extends React.Component  {
 
     render() {
         return (
-                <div>
+                <div style={{marginBottom: "10px"}}>
                     <Button color="primary" onClick={this.toggleModal}>System information</Button>
                     <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
                         <ModalHeader toggle={this.toggleModal}>System overview</ModalHeader>

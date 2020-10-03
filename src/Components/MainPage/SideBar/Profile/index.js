@@ -3,6 +3,7 @@ import s from './style.module.css'
 import Photo from "./Photo"
 import Name from "./Name"
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import SkillList from "./Description/Skills_list"
 
 export default class Profile extends Component {
     constructor(props) {
@@ -25,6 +26,7 @@ export default class Profile extends Component {
                     </Col>
                 </Row>
                 <Name user={user}/>
+                <SkillList/>
 
             </Container>
         );
