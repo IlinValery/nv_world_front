@@ -3,7 +3,7 @@ import './style.css'
 import {connect} from "react-redux";
 
 
-class Example extends React.Component {
+class Location extends React.Component {
 
     constructor(props){
         super(props);
@@ -16,7 +16,7 @@ class Example extends React.Component {
 
     render() {
         return (
-            <div>
+            <div className={"location-container"}>
 
             </div>
         );
@@ -30,4 +30,4 @@ export default connect(
     dispatch => ({
 
     })
-)(Example);
+)(Location);

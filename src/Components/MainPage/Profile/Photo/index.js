@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import s from './style.module.css'
-import { getImage } from '../../../Actions/profile';
+import { getImage } from '../../../../Actions/profile';
 import pic from "./data/user_image.svg"
 
 const Photo = ({image}) => {

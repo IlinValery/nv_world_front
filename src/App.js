@@ -7,9 +7,10 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import AuthPage from "./Components/AuthPage";
-import Profile from "./Components/Profile"
+import Profile from "./Components/MainPage/Profile"
 import Location from "./Components/Location"
 import {getImage} from "./Actions/profile";
+import MainPage from "./Components/MainPage";
 
 library.add(faCheck, faTimes)
 
@@ -31,21 +32,22 @@ class App extends React.Component {
         return (
             <div className={"app-container"}>
                 {/*<AuthPage/>*/}
+                <MainPage/>
 
-                {/*<Footer/>*/}
-                <Container fluid={true}>
-                    <Row>
-                        <Col xl="3">
-                            <Profile image={user.image}
-                            name={user.name}
-                            position={user.position}
-                            open={user.isOpenToProjects}/>
-                        </Col>
-                        <Col xl="9">
-                            <Location >location</Location>
-                        </Col>
-                    </Row>
-                </Container>
+                <Footer/>
+                {/*<Container fluid={true}>*/}
+                {/*    <Row>*/}
+                {/*        <Col xl="3">*/}
+                {/*            <Profile image={user.image}*/}
+                {/*            name={user.name}*/}
+                {/*            position={user.position}*/}
+                {/*            open={user.isOpenToProjects}/>*/}
+                {/*        </Col>*/}
+                {/*        <Col xl="9">*/}
+                {/*            /!*<Location >location</Location>*!/*/}
+                {/*        </Col>*/}
+                {/*    </Row>*/}
+                {/*</Container>*/}
             </div>
         );
     }
