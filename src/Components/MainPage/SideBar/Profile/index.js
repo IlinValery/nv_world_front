@@ -13,22 +13,18 @@ export default class Profile extends Component {
     }
 
     render() {
+        const user = this.props.user
         return (
             <Container fluid={true}>
                 <Row>
-                    <Col xl={"7"}>
+                    <Col>
                         <div className={s.whole_page}>
                             {/*{this.props.children}*/}
-                            <Photo image={this.props.image}/>
+                            <Photo/>
                         </div>
                     </Col>
-                    <Col xl={"5"}>
-                        <p>social networks</p>
-                    </Col>
                 </Row>
-                <Name name={this.props.name}
-                    position={this.props.position}
-                    open={this.props.open}/>
+                <Name user={user}/>
 
             </Container>
         );

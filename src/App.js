@@ -7,7 +7,7 @@ import {library} from '@fortawesome/fontawesome-svg-core'
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import AuthPage from "./Components/AuthPage";
-import Profile from "./Components/MainPage/Profile"
+import Profile from "./Components/MainPage/SideBar/Profile"
 import Location from "./Components/Location"
 import {getImage} from "./Actions/profile";
 import MainPage from "./Components/MainPage";

@@ -4,6 +4,12 @@ import {connect} from "react-redux";
 import ModalChangeLocation from "./ModalChangeLocation";
 import ModalInfo from "./ModalInfo";
 import ModalSearch from "./ModalSearch";
+import Profile from "./Profile";
+import Skills from "./Profile/"
+
+import {users} from "./users"
+
+
 
 
 class SideBar extends React.Component {
@@ -18,13 +24,18 @@ class SideBar extends React.Component {
 
 
     render() {
+
         return (
             <div className={"sidebar-container"}>
-                person card as component here, on did mount - > apply personal informatio. Now - just static
-                <br/><br/>
-                TODO divider<br/><br/>
-                Tasks here<br/><br/>
-                TODO divider<br/><br/>
+                <Profile user={users[0]}/>
+
+                {/*person card as component here, on did mount - > apply personal information. Now - just static*/}
+                {/*<br/><br/>*/}
+                {/*TODO divider<br/><br/>*/}
+                {/*Tasks here<br/><br/>*/}
+                {/*TODO divider<br/><br/>*/}
+
+
 
 
 
