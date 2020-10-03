@@ -13,5 +13,5 @@ It was developed during the hackaton conducted by Skoltech and NVIDIA company.
 
 <p align="center">
 <img src="https://old.sk.ru/resized-image.ashx/__size/550x0/__key/telligent-evolution-components-attachments/13-50-00-00-00-02-16-56/skoltech-rastr-ENG.png" height="40">
-<img src="https://img2.freepng.ru/20180808/sll/kisspng-graphics-cards-video-adapters-nvidia-quadro-fx-4-nvidia-feature-support-5b6ab8b9480a28.2128090015337207612951.jpg" height="40">
+<img src="https://www.overclockers.ua/news/logo/118740-nvidia-logo-1.jpg" height="40">
 </p>
