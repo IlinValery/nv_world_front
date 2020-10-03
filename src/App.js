@@ -1,14 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import './App.css';
-import Footer from "./Components/Footer";
+import jwt_decode from "jwt-decode";
 
+import Footer from "./Components/Footer";
 import {library} from '@fortawesome/fontawesome-svg-core'
 import {faCheck, faTimes} from "@fortawesome/free-solid-svg-icons";
-import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+// import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
 import AuthPage from "./Components/AuthPage";
-import Profile from "./Components/MainPage/Profile"
-import Location from "./Components/Location"
 import {getImage} from "./Actions/profile";
 import MainPage from "./Components/MainPage";
 
@@ -20,10 +19,28 @@ class App extends React.Component {
         super(props);
 
         this.state={
+            isLoggedIn:false
         }
     }
 
+    UNSAFE_componentWillMount() {
+        const token = localStorage.getItem('usertoken');
+        if (token!==undefined){
+            try {
+                let data = jwt_decode(token);
+                console.log(data)
+                this.setState({
+                    isLoggedIn: true
+                })
+            } catch (err) {
+                localStorage.clear();
+                this.setState({
+                    isLoggedIn: false
+                })
 
+            }
+        }
+    }
 
     render() {
         console.log("app", this.props.users[0].image);
@@ -31,23 +48,8 @@ class App extends React.Component {
         console.log("name", user.name);
         return (
             <div className={"app-container"}>
-                {/*<AuthPage/>*/}
-                <MainPage/>
-
+                {this.state.isLoggedIn? <MainPage/>:<AuthPage/>}
                 <Footer/>
-                {/*<Container fluid={true}>*/}
-                {/*    <Row>*/}
-                {/*        <Col xl="3">*/}
-                {/*            <Profile image={user.image}*/}
-                {/*            name={user.name}*/}
-                {/*            position={user.position}*/}
-                {/*            open={user.isOpenToProjects}/>*/}
-                {/*        </Col>*/}
-                {/*        <Col xl="9">*/}
-                {/*            /!*<Location >location</Location>*!/*/}
-                {/*        </Col>*/}
-                {/*    </Row>*/}
-                {/*</Container>*/}
             </div>
         );
     }
