@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
-
+import Rooms from "./Rooms"
 
 class ModalChangeLocation extends React.Component {
 
@@ -26,7 +26,10 @@ class ModalChangeLocation extends React.Component {
                 <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Choose a new location</ModalHeader>
                     <ModalBody>
-                        TODO make map of location
+                        {/*TODO make map of location*/}
+
+                            <Rooms/>
+
                     </ModalBody>
                 </Modal>
             </div>

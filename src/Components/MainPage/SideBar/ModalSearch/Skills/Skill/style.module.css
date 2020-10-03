@@ -1,0 +1,8 @@
+.skill {
+    cursor: inherit !important;
+}
+.skill:hover {
+    color: #212529 !important;
+    background-color: #57e783 !important;
+    border-color: #57e783 !important;
+}
