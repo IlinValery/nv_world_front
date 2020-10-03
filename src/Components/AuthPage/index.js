@@ -16,7 +16,8 @@ class AuthPage extends React.Component {
             password: "",
             dataChanged: false,
             isError: false,
-            passwordValidated: false
+            passwordValidated: false,
+            is_male:true
         }
         this.passwordChange = this.passwordChange.bind(this);
         this.fieldChange = this.fieldChange.bind(this);
@@ -50,6 +51,10 @@ class AuthPage extends React.Component {
         })
     }
 
+    setIsMale(value){
+        this.setState({is_male: value})
+    }
+
 
     formSubmit() {
         fetch('/api/auth/login/', {
@@ -62,7 +67,8 @@ class AuthPage extends React.Component {
             body: JSON.stringify({
                 'username': this.state.username,
                 'password': this.state.password,
-                'realname': this.state.realnamel
+                'realname': this.state.realnamel,
+                'is_male': this.state.is_male
             })
         })
             .then((response) => {
@@ -95,6 +101,7 @@ class AuthPage extends React.Component {
     }
 
     render() {
+        console.log(this.state)
         return (
             <div className={"auth-page-container"}>
                 <Container>
@@ -126,6 +133,30 @@ class AuthPage extends React.Component {
                                                onChange={this.passwordChange}
                                                placeholder="type your password here"/>
                                     </FormGroup>
+                                    <FormGroup tag="fieldset" row>
+                                        <legend className="col-form-label col-sm-4">gender</legend>
+                                        <Col sm={10}>
+                                            <Row form>
+                                                <Col sm={6}>
+                                                    <FormGroup check>
+                                                        <Label check>
+                                                            <Input type="radio" name="radio_male" onClick={()=>{this.setIsMale(true)}}  />{' '}
+                                                            male
+                                                        </Label>
+                                                    </FormGroup>
+                                                </Col>
+                                                <Col sm={6}>
+                                                    <FormGroup check>
+                                                        <Label check>
+                                                            <Input type="radio" name="radio_male" onClick={()=>{this.setIsMale(false)}} />{' '}
+                                                            female
+                                                        </Label>
+                                                    </FormGroup>
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                    </FormGroup>
+
                                 </Form>
                                 <Button size={"lg"}
                                         {...(this.state.username.length !== 0 && this.state.passwordValidated && this.state.realname.length !== 0) ? {
