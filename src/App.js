@@ -49,9 +49,6 @@ class App extends React.Component {
         return (
             <div className={"app-container"}>
                 {this.state.isLoggedIn? <MainPage/>:<AuthPage/>}
-
-
-
                 <Footer/>
             </div>
         );

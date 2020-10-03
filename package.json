@@ -1,7 +1,7 @@
 {
   "name": "nv_world_front",
-  "proxy": "http://127.0.0.1:8000",
-  "proxy_prod": "http://188.225.39.84",
+  "proxy_dev": "http://127.0.0.1:8000",
+  "proxy": "http://188.225.39.84",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
