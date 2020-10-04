@@ -7,7 +7,7 @@ import ModalSearch from "./ModalSearch";
 import Profile from "./Profile";
 import Skills from "./Profile/"
 
-import {users} from "./users"
+// import {users} from "./users"
 
 
 import HorizontalDivider from "./Components/divider";
@@ -33,7 +33,9 @@ class SideBar extends React.Component {
                 {/*<HorizontalDivider/>*/}
                 {/*Tasks here<br/><br/>*/}
                 {/*<HorizontalDivider/>*/}
-                <Profile user={users[0]}/>
+
+                {/*<Profile user={users[0]}/>*/}
+                <Profile user_id={-1}/>
 
                 {/*person card as component here, on did mount - > apply personal information. Now - just static*/}
                 {/*<br/><br/>*/}
