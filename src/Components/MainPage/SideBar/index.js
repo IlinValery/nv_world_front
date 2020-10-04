@@ -6,7 +6,7 @@ import ModalInfo from "./ModalInfo";
 import ModalSearch from "./ModalSearch";
 import Profile from "./Profile";
 import Skills from "./Profile/"
-import ModalPerson from "./ModalPerson";
+import ModalPerson from "./ModalPersonEdit";
 
 // import {users} from "./users"
 
