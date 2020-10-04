@@ -1,31 +1,30 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import s from './style.module.css'
-import { getImage } from '../../../../../Actions/profile';
-import pic from "./data/user_image.svg"
+import male from "./data/male.png"
+import female from "./data/female.png"
 
-const Photo = ({image}) => {
-    // const state = onObtainImage(1);
+class Photo extends React.Component {
 
-    return (
-        <div className={s.block_center}>
-            {/*<button style={{visibility: "hidden"}} onLoad={onGetImage}/>*/}
-            <img src={pic} className={s.photo_user}/>
-        </div>
-    );
+    constructor(props){
+        super(props);
+
+        this.state={
+
+        }
+    }
+
+
+    render() {
+        console.log("user:",this.props.user)
+        return (
+            <div className={s.block_center}>
+                {this.props.user.photo?
+                    <></>:
+                    <img src={this.props.user.is_male?male:female} className={s.photo_user}/>
+                }
+            </div>
+        );
+    }
 }
-// export default connect(
-//     state => ({
-//         user: state.users[0]
-//     }),
-//     dispatch => ({
-//         onGetImage: () => {
-//             dispatch(getImage());
-//         },
-//         onObtainImage: (id) => {
-//             // console.log('name', name);
-//             dispatch({ type: 'GET_IMAGE', payload: id});
-//         }
-//     })
-// )(Photo);
+
 export default Photo;

@@ -6,7 +6,7 @@ import {Container, Row, Col, Form, FormGroup, Label, Input, Button} from 'reacts
 import SkillList from "./Description/Skills_list"
 import jwt_decode from "jwt-decode";
 import {getCurrentAuthUser} from "../../../../utils";
-import ModalPerson from "../ModalPerson";
+import ModalPerson from "../ModalPersonEdit";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -18,8 +18,8 @@ export default class Profile extends Component {
     }
 
     loadProfileData(id) {
-        fetch('/api/user/'+id)
-            .then( (response) => {
+        fetch('/api/user/' + id)
+            .then((response) => {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
@@ -39,8 +39,6 @@ export default class Profile extends Component {
             .catch((err) => {
                 console.log('Fetch Error:', err);
             });
-        console.log(id);
-
     }
 
     componentDidMount() {
@@ -53,26 +51,19 @@ export default class Profile extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <Container fluid={true}>
-                <Row>
-                    <Col xl={1}>
-                        <ModalPerson/>
-                    </Col>
-                    <Col>
+                {this.state.dataLoaded ?
+                    <div>
                         <div className={s.whole_page}>
-                            {/*{this.props.children}*/}
-                            <Photo/>
+                            <Photo user={this.state.user_info}/>
                         </div>
-                    </Col>
-                </Row>
+                        <hr/>
+                        <Name user={this.state.user_info} position={this.state.roles}/>
+                        <hr/>
+                        <SkillList skills={this.state.skills}/>
+                    </div> : <></>}
 
-                {this.state.dataLoaded? <><Name user={this.state.user_info} position={this.state.roles}/></>: null }
-                {this.state.dataLoaded? <><SkillList skills={this.state.skills}/></>: null }
-
-                {/*<Name user={this.state.}/>*/}
-                {/*<SkillList/>*/}
 
             </Container>
         );

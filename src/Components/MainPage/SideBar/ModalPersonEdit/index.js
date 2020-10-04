@@ -5,6 +5,7 @@ import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Container,
 import {Form, FormGroup, FormFeedback, Jumbotron, Alert, Label} from "reactstrap"
 import image from "./data/edit.svg"
 import {getCookie} from "../../../utils";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class ModalPerson extends React.Component {
 
@@ -196,9 +197,10 @@ class ModalPerson extends React.Component {
 
     render() {
         return (
-            <div >
-                <Button onClick={this.toggleModal} className={"btn_edit"}>
-                    <img src={image} className="image_profile_edit" alt=""/>
+            <div style={{zIndex:999}}>
+                <Button onClick={this.toggleModal} className={"btn_edit"} color="primary" block>
+                    <FontAwesomeIcon icon="edit" size={"lg"}
+                                     title={"No connection with server"}/> &nbsp; Edit profile
                 </Button>
                 <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Choose an action</ModalHeader>
