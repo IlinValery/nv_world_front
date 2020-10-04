@@ -26,7 +26,7 @@ export default class Profile extends Component {
                     </Col>
                 </Row>
                 <Name user={user}/>
-                <SkillList/>
+                <SkillList skills={user.skills}/>
 
             </Container>
         );

@@ -15,11 +15,15 @@ class SkillList extends React.Component {
 
 
     render() {
-
+        const skills = this.props.skills;
+        const skills_value_local = [
+            {value: 45}, {value: 20}, {value: 90}];
         return (
             <div >
                 <br/>
-               TODO Skills
+                   <Skill skills={skills_value_local[0]}/>
+                   <Skill skills={skills_value_local[1]}/>
+                   <Skill skills={skills_value_local[2]}/>
                 <br/>
             </div>
         );
