@@ -32,7 +32,7 @@ export default class Profile extends Component {
                     user_info: data.user_info,
                     roles: data.roles,
                     skills: data.skills,
-                    dataLoaded:true
+                    dataLoaded: true
                 })
 
             })
@@ -67,10 +67,12 @@ export default class Profile extends Component {
                         </div>
                     </Col>
                 </Row>
-                <Name user={user}/>
-                <SkillList skills={user.skills}/>
-                {/*<Name user={user}/>*/}
-                <SkillList/>
+
+                {this.state.dataLoaded? <><Name user={this.state.user_info} position={this.state.roles}/></>: null }
+                {this.state.dataLoaded? <><SkillList skills={this.state.skills}/></>: null }
+
+                {/*<Name user={this.state.}/>*/}
+                {/*<SkillList/>*/}
 
             </Container>
         );

@@ -19,7 +19,8 @@ class ModalPerson extends React.Component {
             dataChanged: false,
             emailValidated: false,
             passwordValidated: false,
-            isError: false,
+            isErrorMail: false,
+            isErrorPassword: false,
             is_open: false,
         }
         this.toggleModal = this.toggleModal.bind(this);
@@ -91,7 +92,7 @@ class ModalPerson extends React.Component {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                     this.setState({
-                        isError: true
+                        isErrorMail: true
                     });
                     return;
                 }
