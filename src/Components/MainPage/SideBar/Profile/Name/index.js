@@ -14,6 +14,8 @@ export default class Name extends Component {
 
     render() {
         const user = this.props.user;
+        const position = this.props.position[0];
+        console.log("position", position);
         return (
             <Container fluid={false}>
                 <hr/>
@@ -24,7 +26,7 @@ export default class Name extends Component {
                 </Row>
                 <Row>
                     <Col style={{textAlign: "center"}}>
-                        <h5>{user.position}</h5>
+                        <h5>{position.role}</h5>
                     </Col>
                 </Row>
 
@@ -37,7 +39,6 @@ export default class Name extends Component {
                             </Label>
                         </FormGroup>
                     </Form>
-
                 </Row>
                 <hr/>
             </Container>
