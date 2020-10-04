@@ -3,6 +3,7 @@ import s from './style.module.css'
 import Photo from "./Photo"
 import Name from "./Name"
 import { Container, Row, Col, Form, FormGroup, Label, Input, Button } from 'reactstrap';
+import SkillList from "./Description/Skills_list"
 
 export default class Profile extends Component {
     constructor(props) {
@@ -13,22 +14,19 @@ export default class Profile extends Component {
     }
 
     render() {
+        const user = this.props.user
         return (
             <Container fluid={true}>
                 <Row>
-                    <Col xl={"7"}>
+                    <Col>
                         <div className={s.whole_page}>
                             {/*{this.props.children}*/}
-                            <Photo image={this.props.image}/>
+                            <Photo/>
                         </div>
                     </Col>
-                    <Col xl={"5"}>
-                        <p>social networks</p>
-                    </Col>
                 </Row>
-                <Name name={this.props.name}
-                    position={this.props.position}
-                    open={this.props.open}/>
+                <Name user={user}/>
+                <SkillList/>
 
             </Container>
         );

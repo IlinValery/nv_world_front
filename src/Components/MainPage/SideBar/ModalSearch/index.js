@@ -2,6 +2,8 @@ import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
 import {Button, Modal, ModalHeader, ModalBody, ModalFooter} from "reactstrap";
+import { Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
+import Skills from "./Skills";
 
 
 class ModalSearch extends React.Component {
@@ -21,12 +23,14 @@ class ModalSearch extends React.Component {
 
     render() {
         return (
-            <div>
+            <div style={{marginBottom: "10px"}}>
                 <Button color="primary" onClick={this.toggleModal}>Search person</Button>
                 <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
-                    <ModalHeader toggle={this.toggleModal}>Insert filters</ModalHeader>
+                    <ModalHeader toggle={this.toggleModal}>Choose necessary skills</ModalHeader>
                     <ModalBody>
-                        TODO make filters here
+                        <Container fluid={true} className="modal_search">
+                            <Skills/>
+                        </Container>
                     </ModalBody>
                 </Modal>
             </div>

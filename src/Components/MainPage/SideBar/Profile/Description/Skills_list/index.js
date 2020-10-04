@@ -1,9 +1,9 @@
 import React from 'react';
-import './style.module.css'
+import './style.css'
 import {connect} from "react-redux";
+import Skill from "./Skill"
 
-
-class Example extends React.Component {
+class SkillList extends React.Component {
 
     constructor(props){
         super(props);
@@ -15,9 +15,12 @@ class Example extends React.Component {
 
 
     render() {
-        return (
-            <div>
 
+        return (
+            <div >
+                <br/>
+               TODO Skills
+                <br/>
             </div>
         );
     }
@@ -30,4 +33,4 @@ export default connect(
     dispatch => ({
 
     })
-)(Example);
+)(SkillList);

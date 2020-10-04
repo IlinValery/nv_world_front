@@ -67,7 +67,7 @@ class AuthPage extends React.Component {
             body: JSON.stringify({
                 'username': this.state.username,
                 'password': this.state.password,
-                'realname': this.state.realnamel,
+                'realname': this.state.realname,
                 'is_male': this.state.is_male
             })
         })

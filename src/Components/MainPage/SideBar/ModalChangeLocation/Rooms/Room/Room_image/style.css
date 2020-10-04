@@ -1,0 +1,16 @@
+.image_room {
+    width: 30%;
+    border-radius: 10px;
+    margin: auto;
+}
+
+.block_image {
+    text-align: center;
+    display: block;
+}
+
+.btn_room {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 10px !important;
+}
