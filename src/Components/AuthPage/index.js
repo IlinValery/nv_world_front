@@ -1,7 +1,7 @@
 import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
-import {Button, Col, Container, Form, FormGroup, Input, Label, Row} from "reactstrap";
+import {Button, Col, Container, Form, FormGroup, Input, Label, Row, FormFeedback} from "reactstrap";
 import {getCookie} from "../../utils";
 
 
@@ -17,7 +17,7 @@ class AuthPage extends React.Component {
             dataChanged: false,
             isError: false,
             passwordValidated: false,
-            is_male:true
+            is_male: true
         }
         this.passwordChange = this.passwordChange.bind(this);
         this.fieldChange = this.fieldChange.bind(this);
@@ -51,7 +51,7 @@ class AuthPage extends React.Component {
         })
     }
 
-    setIsMale(value){
+    setIsMale(value) {
         this.setState({is_male: value})
     }
 
@@ -131,7 +131,9 @@ class AuthPage extends React.Component {
                                         <Label for="password_field">password</Label>
                                         <Input type="password" name="password" id="password_field"
                                                onChange={this.passwordChange}
+                                               {...(this.state.passwordValidated ? {valid: true} : {invalid: true})}
                                                placeholder="type your password here"/>
+                                        <FormFeedback>min 8 symbols on password</FormFeedback>
                                     </FormGroup>
                                     <FormGroup tag="fieldset" row>
                                         <legend className="col-form-label col-sm-4">gender</legend>
@@ -140,7 +142,9 @@ class AuthPage extends React.Component {
                                                 <Col sm={6}>
                                                     <FormGroup check>
                                                         <Label check>
-                                                            <Input type="radio" name="radio_male" onClick={()=>{this.setIsMale(true)}}  />{' '}
+                                                            <Input type="radio" name="radio_male" onClick={() => {
+                                                                this.setIsMale(true)
+                                                            }}/>{' '}
                                                             male
                                                         </Label>
                                                     </FormGroup>
@@ -148,7 +152,9 @@ class AuthPage extends React.Component {
                                                 <Col sm={6}>
                                                     <FormGroup check>
                                                         <Label check>
-                                                            <Input type="radio" name="radio_male" onClick={()=>{this.setIsMale(false)}} />{' '}
+                                                            <Input type="radio" name="radio_male" onClick={() => {
+                                                                this.setIsMale(false)
+                                                            }}/>{' '}
                                                             female
                                                         </Label>
                                                     </FormGroup>
