@@ -4,32 +4,6 @@ import {connect} from "react-redux";
 import { Button, Container, Row, Col, Form, FormGroup, Label, Input } from 'reactstrap';
 import Skill from "./Skill";
 
-const skills_local = [
-    {
-        name: "Middle C++",
-        id: 1
-    },
-    {
-        name: "Deep Learning",
-        id: 2
-    },
-    {
-        name: "BackEnd",
-        id: 3
-    },
-    {
-        name: "FrontEnd",
-        id: 4
-    },
-    {
-        name: "BugFixer",
-        id: 5
-    }
-]
-
-
-
-
 class Skills extends React.Component {
 
     constructor(props) {
@@ -38,6 +12,7 @@ class Skills extends React.Component {
         this.state = {
             value: ''
         }
+        this.inputChange = this.inputChange.bind(this);
     }
 
     findSkill = () => {
@@ -45,37 +20,49 @@ class Skills extends React.Component {
         this.props.onFindSkill(this.state.value);
     }
 
-    handleChange(event) {
-        this.setState({value: event.target.value});
+    setFieldsToState(e){
+        this.setState({
+            value: e.target.value,
+        });
+        return new Promise(function(resolve, reject) {
+            setTimeout(function(){
+                resolve(100);
+            }, 200)
+        });
+    }
+
+    inputChange(value){
+        this.setFieldsToState(value).then(()=>{
+            this.findSkill();
+        })
     }
 
     render() {
         let searchInput = '';
 
-
+        console.log("value from field", this.state.value);
 
         return (
             <div className="skills_search">
                 <Form>
                     <FormGroup row>
-                        <Input type="text" ref={(input) => { searchInput = input}} onChange={this.handleChange}/>
+                        <Input type="text" ref={(input) => { searchInput = input}} onChange={this.inputChange}/>
                     </FormGroup>
                 </Form>
 
                 <ul className="hr">
                     {/*TODO check the errors with this list*/}
-                    {/*{this.props.skills.map((skill, index) =>*/}
-                    {/*    <li key={index}>*/}
-                    {/*        <Skill skill={skill}/>*/}
-                    {/*    </li>*/}
-                    {/*)}*/}
-                    {/*]*/}
-
-                    {skills_local.map((skill, index) =>
-                        <li key={index} >
-                            <Skill>{skill}</Skill>
+                    {this.props.skills.map((skill, index) =>
+                        <li key={index}>
+                            <Skill skill={skill.title}/>
                         </li>
                     )}
+
+                    {/*{skills_local.map((skill, index) =>*/}
+                    {/*    <li key={index} >*/}
+                    {/*        <Skill>{skill}</Skill>*/}
+                    {/*    </li>*/}
+                    {/*)}*/}
 
 
                 </ul>
@@ -88,13 +75,12 @@ class Skills extends React.Component {
 
 export default connect(
     state => ({
-        // skills: state.skills.filter(skill => skill.name.includes(state.filterSkills)),
-
+        skills: state.skills.filter(skill => skill.title.includes(state.filterSkills)),
     }),
     dispatch => ({
-        onFindSkill: (name) => {
+        onFindSkill: (skill) => {
             // console.log('name', name);
-            dispatch({ type: 'FIND_SKILL', payload: name});
+            dispatch({ type: 'FIND_SKILL', payload: skill.title});
         },
     })
 )(Skills);

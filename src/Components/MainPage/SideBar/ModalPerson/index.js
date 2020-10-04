@@ -131,7 +131,7 @@ class ModalPerson extends React.Component {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
                     this.setState({
-                        isError: true
+                        isErrorPassword: true
                     });
                     return;
                 }
@@ -169,9 +169,9 @@ class ModalPerson extends React.Component {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
-                    this.setState({
-                        isError: true
-                    });
+                    // this.setState({
+                    //     isError: true
+                    // });
                     return;
                 }
                 return response.json();
@@ -204,7 +204,6 @@ class ModalPerson extends React.Component {
                     <ModalHeader toggle={this.toggleModal}>Choose an action</ModalHeader>
                     <ModalBody>
 
-
                         <Container>
                             <Row>
                                 <Col>
@@ -236,7 +235,7 @@ class ModalPerson extends React.Component {
                                             </Col>
                                             <Col/>
                                         </Row>
-                                        {this.state.isError? (
+                                        {this.state.isErrorMail? (
                                             <div>
                                                 <br/>
                                                 <Alert color="danger" className="text-center">
@@ -278,7 +277,7 @@ class ModalPerson extends React.Component {
                                             </Col>
                                             <Col/>
                                         </Row>
-                                        {this.state.isError? (
+                                        {this.state.isErrorPassword? (
                                             <div>
                                                 <br/>
                                                 <Alert color="danger" className="text-center">
@@ -317,15 +316,6 @@ class ModalPerson extends React.Component {
                                         </Col>
                                         <Col/>
                                     </Row>
-                                    {this.state.isError? (
-                                        <div>
-                                            <br/>
-                                            <Alert color="danger" className="text-center">
-                                                Wrong email
-                                            </Alert>
-                                        </div>
-                                    ):(<></>)}
-
 
                                 </Form>
                             </Row>
