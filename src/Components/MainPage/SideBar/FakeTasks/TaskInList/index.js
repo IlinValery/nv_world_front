@@ -15,7 +15,6 @@ export default class TaskInList extends React.Component {
 
     finishTask(){
         let data = getCurrentAuthUser()
-        console.log(data);
         fetch('/api/task/complete/', {
             method: 'POST',
             headers: {
