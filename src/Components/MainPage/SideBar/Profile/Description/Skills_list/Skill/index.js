@@ -16,32 +16,18 @@ class Skill extends React.Component {
 
 
     render() {
-        const skills = this.props.skills;
-        // skills.map((s, i) => {
-        //     console.log("s", i);
-        // });
+
         return (
             <div >
                 <Container fluid={true}>
-
-                    {/*<ul className="hr">*/}
-                    {/*    {skills.map((skill) =>*/}
-                    {/*        <li key={skill} >*/}
                                 <Row>
-                                    <Col xl={"2"}>
-                                        {/*{skill}*/}
-                                        C++
+                                    <Col sm={"5"}>
+                                        {this.props.name}
                                     </Col>
-                                    <Col xl={"10"}>
-                                        <Progress value={this.props.skills.value}/>
+                                    <Col sm={"7"}>
+                                        <Progress value={this.props.value} title={this.props.real_value} />
                                     </Col>
                                 </Row>
-                    {/*        </li>*/}
-                    {/*    )}*/}
-                    {/*</ul>*/}
-
-
-
                 </Container>
             </div>
         );

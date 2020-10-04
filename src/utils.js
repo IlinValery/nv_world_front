@@ -12,7 +12,6 @@ export function getCurrentAuthUser(){
     if (token!==undefined){
         try {
             data = jwt_decode(token);
-            console.log(data)
         } catch (err) {
             localStorage.clear();
         }

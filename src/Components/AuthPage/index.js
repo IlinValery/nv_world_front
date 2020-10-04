@@ -101,7 +101,6 @@ class AuthPage extends React.Component {
     }
 
     render() {
-        console.log(this.state)
         return (
             <div className={"auth-page-container"}>
                 <Container>

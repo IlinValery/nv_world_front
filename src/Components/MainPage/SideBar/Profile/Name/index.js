@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import s from './style.module.css'
-import {Container, Row, Col, Form, FormGroup, Label, Input, Button} from 'reactstrap';
+
+import {Container, Row, Col} from 'reactstrap';
 import ModalPersonEdit from "../../ModalPersonEdit";
 
 export default class Name extends Component {
@@ -25,7 +25,6 @@ export default class Name extends Component {
     render() {
         const user = this.props.user;
         const position = this.props.position[0];
-
         return (
             <Container fluid={false}>
 
@@ -36,7 +35,7 @@ export default class Name extends Component {
                 </Row>
                 <Row>
                     <Col style={{textAlign: "center"}}>
-                        <h5>{this.dict_roles ? this.dict_roles[position.role] : ""}</h5>
+                        <h5>{this.dict_roles ? this.dict_roles[position.role] : ""} <br/>in <b>{position.project_info.name}</b> project</h5>
                     </Col>
                 </Row>
 

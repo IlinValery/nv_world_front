@@ -4,9 +4,7 @@ import Photo from "./Photo"
 import Name from "./Name"
 import {Container, Row, Col, Form, FormGroup, Label, Input, Button} from 'reactstrap';
 import SkillList from "./Description/Skills_list"
-import jwt_decode from "jwt-decode";
 import {getCurrentAuthUser} from "../../../../utils";
-import ModalPerson from "../ModalPersonEdit";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -40,14 +38,18 @@ export default class Profile extends Component {
                 console.log('Fetch Error:', err);
             });
     }
-
-    componentDidMount() {
+    updateInfo() {
         if (this.props.user_id === -1) {
             let data = getCurrentAuthUser()
             this.loadProfileData(data.user_id);
         } else {
             this.loadProfileData(this.props.user_id);
         }
+    }
+
+    componentDidMount() {
+        this.updateInfo();
+        let timerId = setInterval(() => this.updateInfo(), 1000);
     }
 
     render() {
@@ -58,9 +60,7 @@ export default class Profile extends Component {
                         <div className={s.whole_page}>
                             <Photo user={this.state.user_info}/>
                         </div>
-                        <hr/>
                         <Name user={this.state.user_info} position={this.state.roles}/>
-                        <hr/>
                         <SkillList skills={this.state.skills}/>
                     </div> : <></>}
 

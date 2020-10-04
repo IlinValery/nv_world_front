@@ -12,6 +12,7 @@ import ModalPerson from "./ModalPersonEdit";
 
 
 import HorizontalDivider from "./Components/divider";
+import FakeTasks from "./FakeTasks";
 
 
 class SideBar extends React.Component {
@@ -26,23 +27,11 @@ class SideBar extends React.Component {
 
         return (
             <div className={"sidebar-container"}>
-                {/*person card as component here, on did mount - > apply personal informatio. Now - just static*/}
-                {/*<br/><br/>*/}
-                {/*<HorizontalDivider/>*/}
-                {/*Tasks here<br/><br/>*/}
-                {/*<HorizontalDivider/>*/}
-
-                {/*<Profile user={users[0]}/>*/}
                 <Profile user_id={-1}/>
 
-                {/*person card as component here, on did mount - > apply personal information. Now - just static*/}
-                {/*<br/><br/>*/}
-                {/*TODO divider<br/><br/>*/}
-                {/*Tasks here<br/><br/>*/}
-                {/*TODO divider<br/><br/>*/}
-
-
-
+                <h6>Demo personal skill tasks</h6>
+                <FakeTasks/>
+                <hr/>
 
                 <div className="block_modals">
                     <ModalInfo className="modals_margin_bottom"/>

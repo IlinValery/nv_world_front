@@ -15,12 +15,11 @@ class Photo extends React.Component {
 
 
     render() {
-        console.log("user:",this.props.user)
         return (
             <div className={s.block_center}>
                 {this.props.user.photo?
                     <></>:
-                    <img src={this.props.user.is_male?male:female} className={s.photo_user}/>
+                    <img src={this.props.user.is_male?male:female} className={s.photo_user} alt={"avatar"}/>
                 }
             </div>
         );

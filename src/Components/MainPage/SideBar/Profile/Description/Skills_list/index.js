@@ -5,36 +5,44 @@ import Skill from "./Skill"
 
 class SkillList extends React.Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
-        this.state={
-
-        }
+        this.state = {}
     }
 
+    renderSkillList(array) {
+        const objectsItems = [];
+        let is_first = true;
+        let max_value = 0;
+        for (let i = 0; i < array.length; i++) {
+            if (is_first) {
+                max_value = array[i].score;
+                is_first = false;
+            }
+            objectsItems.push(<Skill key={i} name={array[i].skill_info.title}
+                                     value={parseInt(array[i].score / max_value * 100)} real_value={array[i].score}/>);
+        }
+        return objectsItems;
+    }
 
     render() {
         const skills = this.props.skills;
-        const skills_value_local = [
-            {value: 45}, {value: 20}, {value: 90}];
         return (
-            <div >
-                <br/>
-                   <Skill skills={skills_value_local[0]}/>
-                   <Skill skills={skills_value_local[1]}/>
-                   <Skill skills={skills_value_local[2]}/>
-                <br/>
+            <div>
+                {skills.length === 0 ? <></> :
+                    <div>
+                        <hr/>
+                        <h6>My skills:</h6>
+                        {this.renderSkillList(skills)}
+                        <hr/>
+                    </div>}
             </div>
         );
     }
 }
 
 export default connect(
-    state => ({
-
-    }),
-    dispatch => ({
-
-    })
+    state => ({}),
+    dispatch => ({})
 )(SkillList);

@@ -1,9 +1,18 @@
 import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
-import {Button, Modal, ModalHeader, ModalBody, ModalFooter, Col, Row, Container, UncontrolledAlert, Input} from "reactstrap";
-import {Form, FormGroup, FormFeedback, Jumbotron, Alert, Label} from "reactstrap"
-import image from "./data/edit.svg"
+import {
+    Button,
+    Modal,
+    ModalHeader,
+    ModalBody,
+    Col,
+    Row,
+    Container,
+    Input, ButtonGroup
+} from "reactstrap";
+import {Form, FormGroup, FormFeedback, Alert, Label} from "reactstrap"
+
 import {getCookie} from "../../../utils";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
@@ -30,26 +39,25 @@ class ModalPerson extends React.Component {
     }
 
 
-
     toggleModal() {
         this.setState({is_open: !this.state.is_open});
     }
 
-    setFieldsToState(e){
+    setFieldsToState(e) {
         this.setState({
             [e.target.name]: e.target.value,
             dataChanged: true,
             isError: false
         });
-        return new Promise(function(resolve, reject) {
-            setTimeout(function(){
+        return new Promise(function (resolve, reject) {
+            setTimeout(function () {
                 resolve(100);
             }, 200)
         });
     }
 
-    emailChange(value){
-        this.setFieldsToState(value).then(()=>{
+    emailChange(value) {
+        this.setFieldsToState(value).then(() => {
             if (this.state.email !== "") {
                 this.setState({emailValidated: this.validateEmail(this.state.email)})
             }
@@ -61,8 +69,8 @@ class ModalPerson extends React.Component {
         return re.test(String(email).toLowerCase());
     }
 
-    passwordChange(value){
-        this.setFieldsToState(value).then(()=>{
+    passwordChange(value) {
+        this.setFieldsToState(value).then(() => {
             if (this.state.password.length >= 8) {
                 this.setState({passwordValidated: true})
             } else {
@@ -71,14 +79,14 @@ class ModalPerson extends React.Component {
         })
     }
 
-    reportChange(value){
-        this.setFieldsToState(value).then(()=>{
+    reportChange(value) {
+        this.setFieldsToState(value).then(() => {
             this.setState({report: value})
         })
     }
 
 //todo: check the form submition form
-    formSubmitEmail(){
+    formSubmitEmail() {
         fetch('/api/edit/email/', {
             method: 'POST',
             headers: {
@@ -86,9 +94,9 @@ class ModalPerson extends React.Component {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            body: JSON.stringify({'email':this.state.email})
+            body: JSON.stringify({'email': this.state.email})
         })
-            .then( (response) => {
+            .then((response) => {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
@@ -104,7 +112,7 @@ class ModalPerson extends React.Component {
                     localStorage.setItem('usertoken', data.token);
                     window.location.reload();
                 }
-                if (data.error){
+                if (data.error) {
                     this.setState({
                         errorCode: data.error.code
                     });
@@ -117,7 +125,7 @@ class ModalPerson extends React.Component {
 
     }
 
-    formSubmitPassword(){
+    formSubmitPassword() {
         fetch('/api/edit/password/', {
             method: 'POST',
             headers: {
@@ -125,9 +133,9 @@ class ModalPerson extends React.Component {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            body: JSON.stringify({'password':this.state.password})
+            body: JSON.stringify({'password': this.state.password})
         })
-            .then( (response) => {
+            .then((response) => {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
@@ -143,7 +151,7 @@ class ModalPerson extends React.Component {
                     localStorage.setItem('usertoken', data.token);
                     window.location.reload();
                 }
-                if (data.error){
+                if (data.error) {
                     this.setState({
                         errorCode: data.error.code
                     });
@@ -156,7 +164,7 @@ class ModalPerson extends React.Component {
 
     }
 
-    formSubmitReport(){
+    formSubmitReport() {
         fetch('/api/submit/report/', {
             method: 'POST',
             headers: {
@@ -164,9 +172,9 @@ class ModalPerson extends React.Component {
                 'Content-Type': 'application/json',
                 'X-CSRFToken': getCookie('csrftoken')
             },
-            body: JSON.stringify({'report':this.state.report})
+            body: JSON.stringify({'report': this.state.report})
         })
-            .then( (response) => {
+            .then((response) => {
                 if (response.status !== 200) {
                     console.log('Looks like there was a problem. Status Code: ' +
                         response.status);
@@ -182,7 +190,7 @@ class ModalPerson extends React.Component {
                     localStorage.setItem('usertoken', data.token);
                     window.location.reload();
                 }
-                if (data.error){
+                if (data.error) {
                     this.setState({
                         errorCode: data.error.code
                     });
@@ -194,14 +202,50 @@ class ModalPerson extends React.Component {
             });
 
     }
+    logout(){
+        fetch('/api/auth/logout')
+            .then( (response) => {
+                if (response.status !== 200) {
+                    console.log('Looks like there was a problem. Status Code: ' +
+                        response.status);
+                    return;
+                } else {this.setState({connectionSuccessful:true})}
+                return response.json();
+            })
+            .then((data) => {
 
+            })
+            .catch((err) => {
+                this.setState({
+                    respData: null
+                });
+
+                console.log('Fetch Error:', err);
+            });
+        localStorage.removeItem('usertoken');
+        window.location.replace('/')
+
+    }
     render() {
         return (
-            <div style={{zIndex:999}}>
-                <Button onClick={this.toggleModal} className={"btn_edit"} color="primary" block>
-                    <FontAwesomeIcon icon="edit" size={"lg"}
-                                     title={"No connection with server"}/> &nbsp; Edit profile
-                </Button>
+            <div>
+                <Row>
+                    <Col/>
+                    <Col sm={10}>
+                        <ButtonGroup size={"sm"}>
+                            <Button onClick={this.toggleModal} color="primary" >
+                                <FontAwesomeIcon icon="edit" size={"lg"}
+                                                 title={"No connection with server"}/> &nbsp; Edit profile
+                            </Button>
+                            <Button onClick={()=>{this.logout();}} color="secondary" >
+                                <FontAwesomeIcon icon="door-open" size={"lg"} title="Logout"
+                                                 title={"No connection with server"}/>
+                            </Button>
+                        </ButtonGroup>
+                    </Col>
+                    <Col/>
+                </Row>
+
                 <Modal isOpen={this.state.is_open} toggle={this.toggleModal}>
                     <ModalHeader toggle={this.toggleModal}>Choose an action</ModalHeader>
                     <ModalBody>
@@ -211,20 +255,28 @@ class ModalPerson extends React.Component {
                             <Row>
                                 <Col>
                                     <Form
-                                        onKeyPress={e => {if (e.key === 'Enter') {
-                                            if (this.state.emailValidated ) {
-                                                this.formSubmitEmail()
+                                        onKeyPress={e => {
+                                            if (e.key === 'Enter') {
+                                                if (this.state.emailValidated) {
+                                                    this.formSubmitEmail()
+                                                }
                                             }
-                                        }}}>
+                                        }}>
                                         <h5 className={"text-center"}>Change email</h5>
                                         <FormGroup>
                                             <Label for="fieldEmail">Email</Label>
                                             <Input type="email"
                                                    name="email"
                                                    id="fieldEmail"
-                                                   {...(this.state.email === "")? {invalid: false, valid: false}: (this.state.emailValidated) ? {invalid: false, valid: true}: {invalid: true, valid: false} }
+                                                   {...(this.state.email === "") ? {
+                                                       invalid: false,
+                                                       valid: false
+                                                   } : (this.state.emailValidated) ? {
+                                                       invalid: false,
+                                                       valid: true
+                                                   } : {invalid: true, valid: false}}
                                                    onChange={this.emailChange}
-                                                   placeholder="Enter your email" />
+                                                   placeholder="Enter your email"/>
                                             <FormFeedback invalid={1}>Email in invalid format</FormFeedback>
 
                                         </FormGroup>
@@ -233,19 +285,25 @@ class ModalPerson extends React.Component {
                                             <Col/>
                                             <Col>
                                                 <Button block
-                                                        {...(this.state.emailValidated  && !this.state.isError) ? {disabled: false, outline: false, color: 'primary'}: {disabled: true, outline: true, color: 'secondary'}}
-                                                        onClick={()=>{this.formSubmitEmail()}}>Save</Button>
+                                                        {...(this.state.emailValidated && !this.state.isError) ? {
+                                                            disabled: false,
+                                                            outline: false,
+                                                            color: 'primary'
+                                                        } : {disabled: true, outline: true, color: 'secondary'}}
+                                                        onClick={() => {
+                                                            this.formSubmitEmail()
+                                                        }}>Save</Button>
                                             </Col>
                                             <Col/>
                                         </Row>
-                                        {this.state.isError? (
+                                        {this.state.isError ? (
                                             <div>
                                                 <br/>
                                                 <Alert color="danger" className="text-center">
                                                     Wrong email
                                                 </Alert>
                                             </div>
-                                        ):(<></>)}
+                                        ) : (<></>)}
 
 
                                     </Form>
@@ -253,11 +311,13 @@ class ModalPerson extends React.Component {
                                 <Col>
 
                                     <Form
-                                        onKeyPress={e => {if (e.key === 'Enter') {
-                                            if (this.state.passwordValidated) {
-                                                this.formSubmitPassword()
+                                        onKeyPress={e => {
+                                            if (e.key === 'Enter') {
+                                                if (this.state.passwordValidated) {
+                                                    this.formSubmitPassword()
+                                                }
                                             }
-                                        }}}>
+                                        }}>
                                         <h5 className={"text-center"}>Change password</h5>
 
                                         <FormGroup>
@@ -265,9 +325,15 @@ class ModalPerson extends React.Component {
                                             <Input type="password"
                                                    name="password"
                                                    id="fieldPassword"
-                                                   {...(this.state.password === "")? {invalid: false, valid: false}: (this.state.passwordValidated) ? {invalid: false, valid: true}: {invalid: true, valid: false} }
+                                                   {...(this.state.password === "") ? {
+                                                       invalid: false,
+                                                       valid: false
+                                                   } : (this.state.passwordValidated) ? {
+                                                       invalid: false,
+                                                       valid: true
+                                                   } : {invalid: true, valid: false}}
                                                    onChange={this.passwordChange}
-                                                   placeholder="Enter your password" />
+                                                   placeholder="Enter your password"/>
                                             <FormFeedback invalid={1}>Password should be more then 8
                                                 characters</FormFeedback>
                                         </FormGroup>
@@ -275,19 +341,25 @@ class ModalPerson extends React.Component {
                                             <Col/>
                                             <Col>
                                                 <Button block
-                                                        {...(this.state.passwordValidated && !this.state.isError) ? {disabled: false, outline: false, color: 'primary'}: {disabled: true, outline: true, color: 'secondary'}}
-                                                        onClick={()=>{this.formSubmitPassword()}}>Save</Button>
+                                                        {...(this.state.passwordValidated && !this.state.isError) ? {
+                                                            disabled: false,
+                                                            outline: false,
+                                                            color: 'primary'
+                                                        } : {disabled: true, outline: true, color: 'secondary'}}
+                                                        onClick={() => {
+                                                            this.formSubmitPassword()
+                                                        }}>Save</Button>
                                             </Col>
                                             <Col/>
                                         </Row>
-                                        {this.state.isError? (
+                                        {this.state.isError ? (
                                             <div>
                                                 <br/>
                                                 <Alert color="danger" className="text-center">
                                                     Wrong password
                                                 </Alert>
                                             </div>
-                                        ):(<></>)}
+                                        ) : (<></>)}
 
 
                                     </Form>
@@ -296,10 +368,11 @@ class ModalPerson extends React.Component {
 
                             <Row style={{marginBottom: "30px", textAlign: "center"}}>
                                 <Form style={{margin: "auto"}}
-                                    onKeyPress={e => {if (e.key === 'Enter') {
-                                            this.formSubmitReport()
-                                        }
-                                    }}>
+                                      onKeyPress={e => {
+                                          if (e.key === 'Enter') {
+                                              this.formSubmitReport()
+                                          }
+                                      }}>
                                     <h5>Make a report</h5>
                                     <FormGroup>
                                         <Label for="fieldReport">Report</Label>
@@ -307,7 +380,7 @@ class ModalPerson extends React.Component {
                                                name="report"
                                                id="fieldReport"
                                                onChange={this.reportChange}
-                                               placeholder="Enter your report" />
+                                               placeholder="Enter your report"/>
                                         {/*<FormFeedback invalid={1}>Email in invalid format</FormFeedback>*/}
 
                                     </FormGroup>
@@ -315,18 +388,20 @@ class ModalPerson extends React.Component {
                                     <Row>
                                         <Col/>
                                         <Col>
-                                            <Button block onClick={()=>{this.formSubmitReport()}}>Submit</Button>
+                                            <Button block onClick={() => {
+                                                this.formSubmitReport()
+                                            }}>Submit</Button>
                                         </Col>
                                         <Col/>
                                     </Row>
-                                    {this.state.isError? (
+                                    {this.state.isError ? (
                                         <div>
                                             <br/>
                                             <Alert color="danger" className="text-center">
                                                 Wrong email
                                             </Alert>
                                         </div>
-                                    ):(<></>)}
+                                    ) : (<></>)}
 
 
                                 </Form>
