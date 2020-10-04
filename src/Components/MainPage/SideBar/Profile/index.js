@@ -6,6 +6,7 @@ import {Container, Row, Col, Form, FormGroup, Label, Input, Button} from 'reacts
 import SkillList from "./Description/Skills_list"
 import jwt_decode from "jwt-decode";
 import {getCurrentAuthUser} from "../../../../utils";
+import ModalPerson from "../ModalPerson";
 
 export default class Profile extends Component {
     constructor(props) {
@@ -31,7 +32,7 @@ export default class Profile extends Component {
                     user_info: data.user_info,
                     roles: data.roles,
                     skills: data.skills,
-                    dataLoaded:true
+                    dataLoaded: true
                 })
 
             })
@@ -56,6 +57,9 @@ export default class Profile extends Component {
         return (
             <Container fluid={true}>
                 <Row>
+                    <Col xl={1}>
+                        <ModalPerson/>
+                    </Col>
                     <Col>
                         <div className={s.whole_page}>
                             {/*{this.props.children}*/}
@@ -63,8 +67,12 @@ export default class Profile extends Component {
                         </div>
                     </Col>
                 </Row>
-                {/*<Name user={user}/>*/}
-                <SkillList/>
+
+                {this.state.dataLoaded? <><Name user={this.state.user_info} position={this.state.roles}/></>: null }
+                {this.state.dataLoaded? <><SkillList skills={this.state.skills}/></>: null }
+
+                {/*<Name user={this.state.}/>*/}
+                {/*<SkillList/>*/}
 
             </Container>
         );

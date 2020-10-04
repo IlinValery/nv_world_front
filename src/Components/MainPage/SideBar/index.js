@@ -6,6 +6,7 @@ import ModalInfo from "./ModalInfo";
 import ModalSearch from "./ModalSearch";
 import Profile from "./Profile";
 import Skills from "./Profile/"
+import ModalPerson from "./ModalPerson";
 
 // import {users} from "./users"
 
@@ -17,12 +18,9 @@ class SideBar extends React.Component {
 
     constructor(props){
         super(props);
-
         this.state={
-
         }
     }
-
 
     render() {
 
