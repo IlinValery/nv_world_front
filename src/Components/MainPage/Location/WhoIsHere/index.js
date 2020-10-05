@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import {Badge} from "reactstrap"
 
 export default class WhoIsHere extends Component {
     constructor(props) {
@@ -10,9 +11,9 @@ export default class WhoIsHere extends Component {
 
     render() {
         return (
-            <>
-                {this.props.children}
-            </>
+            <h2>
+                <Badge>{this.props.name}</Badge>
+            </h2>
         );
     }
 }

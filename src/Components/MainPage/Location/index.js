@@ -2,6 +2,8 @@ import React from 'react';
 import './style.css'
 import {connect} from "react-redux";
 import {getCookie, getCurrentAuthUser} from "../../../utils";
+import Skill from "../SideBar/Profile/Description/Skills_list/Skill";
+import WhoIsHere from "./WhoIsHere";
 
 
 class Location extends React.Component {
@@ -44,11 +46,23 @@ class Location extends React.Component {
         this.updateMap();
     }
 
+
+    renderSkillList(array) {
+        console.log(array);
+        const objectsItems = [];
+        for (let i = 0; i < array.length; i++) {
+            objectsItems.push(<WhoIsHere key={i} name={array[i].name}/>);
+        }
+        return objectsItems;
+    }
+
     render() {
         return (
             <div className={"location-container"}>
                 {this.state.loaded? <div>
                     <h1>Location: {this.state.room_info.title}</h1>
+                    <p>welcome next people:</p>
+                    {this.renderSkillList(this.state.users)}
                     <img className={"img-map"} src={this.state.room_info.sprite} alt={"map"}/>
                     {/*<h1>asdads</h1>*/}
                 </div> : <div>Loading...</div>}
